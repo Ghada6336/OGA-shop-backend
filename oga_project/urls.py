@@ -24,4 +24,8 @@ urlpatterns = [
     path('list/', views.ListView.as_view(), name='list'),
     path('details/<int:object_id>/', views.DetailView.as_view(), name="details"),
 ]
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

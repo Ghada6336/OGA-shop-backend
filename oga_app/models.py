@@ -7,7 +7,7 @@ class Item(models.Model):
     name = models.CharField(max_length=120)
     discription = models.TextField()
     added_on = models.DateTimeField(auto_now_add=True)
-    item_pic = models.ImageField()
+    picture = models.ImageField()
 
     def __str__(self):
         return self.name
