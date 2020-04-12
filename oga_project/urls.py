@@ -21,7 +21,7 @@ from oga_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('list/', views.ListView.as_view(), name='list'),
+    path('items/', views.ListView.as_view(), name='list'),
     path('details/<int:object_id>/', views.DetailView.as_view(), name="details"),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
