@@ -15,6 +15,10 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 from django.contrib import admin
 from django.urls import path
 from oga_app import views
@@ -23,5 +27,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('items/', views.ListView.as_view(), name='list'),
     path('details/<int:object_id>/', views.DetailView.as_view(), name="details"),
+
+    path('login/', TokenObtainPairView.as_view(), name="login"),
+    path('token/refresh/', TokenRefreshView.as_view(), name="token-refresh"),
+    path('register/', views.UserCreateAPIView.as_view(), name="register"),
 ]
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
