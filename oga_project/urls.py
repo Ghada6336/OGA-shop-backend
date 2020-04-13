@@ -26,10 +26,10 @@ from oga_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    # Don't just call your url "list" - name it after what it is your listing
-    # e.g. 'potatoes/' or 'socks/'
-    path('list/', views.ListView.as_view(), name='list'),
-    path('details/<int:object_id>/', views.DetailView.as_view(), name="details"),
+
+    path('clotheslist/', views.SockListView.as_view(), name='clotheslist'),
+    # path('clothesdetails/<int:object_id>/',
+    #      views.DetailView.as_view(), name="details"),
 
     path('login/', TokenObtainPairView.as_view(), name="login"),
     path('token/refresh/', TokenRefreshView.as_view(), name="token-refresh"),

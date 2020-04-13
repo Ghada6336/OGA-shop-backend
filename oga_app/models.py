@@ -24,10 +24,7 @@ class Item(models.Model):
     size = models.CharField(max_length=2, choices=SIZES)
     gender = models.CharField(max_length=1, choices=GENDERS)
 
-    # It's not clear to me what this user is for
-    # Is this the "owner"? The "seller"?
-    # Name this field properly
-    user = models.ForeignKey(
+    owner = models.ForeignKey(
         User, on_delete=models.CASCADE,  related_name="user")
 
     def __str__(self):

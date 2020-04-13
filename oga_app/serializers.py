@@ -6,16 +6,14 @@ from .models import Item
 class ItemListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ['id', 'name',  'picture', 'price', 'quantity']
+        fields = ['id', 'name',  'picture', 'discription',
+                  'price', 'quantity', 'owner', 'gender']
 
 
-# Your model is very simple.
-# It doesn't need a
-# Just make the ItemListSerializer return all the fields you want
-class DetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Item
-        fields = ['discription', 'id', 'picture', 'quantity', 'size', 'gender']
+# class DetailSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Item
+#         fields = ['discription', 'id', 'picture', 'quantity', 'size', 'gender']
 
 
 class UserCreateSerializer(serializers.ModelSerializer):

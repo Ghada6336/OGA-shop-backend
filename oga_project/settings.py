@@ -38,10 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # You've installed corsheaders but you haven't configured it anywhere
-    # You still need to create a whitelist or allow all
 
-    'corsheaders',
+
     'rest_framework',
     'oga_app',
 ]

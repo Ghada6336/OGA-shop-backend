@@ -1,25 +1,24 @@
 
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView
+
 from oga_app.models import Item
-from .serializers import ItemListSerializer, UserCreateSerializer, DetailSerializer
+from .serializers import ItemListSerializer, UserCreateSerializer
 
 
-class ListView(ListAPIView):
-    # Don't just name this ListView
-    # What is it a list of?
-    # E.g. PotatoListView or SockListView
+class SockListView(ListAPIView):
+
     queryset = Item.objects.all()
     serializer_class = ItemListSerializer
 
 
-class DetailView(RetrieveAPIView):
-    # Your model is very simple.
-    # You don't need a detail view.
-    # Just return the full object in the list view.
-    queryset = Item.objects.all()
-    serializer_class = DetailSerializer
-    lookup_field = 'id'
-    lookup_url_kwarg = 'object_id'
+# class DetailView(RetrieveAPIView):
+#     # Your model is very simple.
+#     # You don't need a detail view.
+#     # Just return the full object in the list view.
+#     queryset = Item.objects.all()
+#     serializer_class = DetailSerializer
+#     lookup_field = 'id'
+#     lookup_url_kwarg = 'object_id'
 
 
 class UserCreateAPIView(CreateAPIView):
