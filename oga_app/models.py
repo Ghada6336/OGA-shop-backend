@@ -19,6 +19,12 @@ class Item(models.Model):
         ('M', 'medium'),
     )
     size = models.CharField(max_length=2, choices=CHOICES)
+    GENDER = (
+        ('M', 'male'),
+        ('F', 'female'),
+
+    )
+    gender = models.CharField(max_length=2, choices=GENDER)
 
     def __str__(self):
         return self.name

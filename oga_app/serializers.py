@@ -12,7 +12,7 @@ class ItemListSerializer(serializers.ModelSerializer):
 class DetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ['discription', 'id', 'picture', 'quantity', 'size']
+        fields = ['discription', 'id', 'picture', 'quantity', 'size', 'gender']
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
