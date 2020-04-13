@@ -9,6 +9,9 @@ class ItemListSerializer(serializers.ModelSerializer):
         fields = ['id', 'name',  'picture', 'price', 'quantity']
 
 
+# Your model is very simple.
+# It doesn't need a
+# Just make the ItemListSerializer return all the fields you want
 class DetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
