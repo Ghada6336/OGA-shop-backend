@@ -6,13 +6,13 @@ from .models import Item
 class ItemListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ['id', 'name', 'discription', 'picture']
+        fields = ['id', 'name',  'picture', 'price']
 
 
 class DetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ['discription', 'id', 'picture']
+        fields = ['discription', 'id', 'picture', 'quantity']
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
