@@ -10,11 +10,6 @@ class ItemListSerializer(serializers.ModelSerializer):
                   'price', 'quantity', 'owner', 'gender']
 
 
-# class DetailSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Item
-#         fields = ['discription', 'id', 'picture', 'quantity', 'size', 'gender']
-
 
 class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
