@@ -6,13 +6,14 @@ from .models import Item
 class ItemListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ['id', 'name',  'picture', 'price', 'quantity']
+        fields = ['id', 'name',  'picture', 'discription',
+                  'price', 'quantity', 'owner', 'gender']
 
 
-class DetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Item
-        fields = ['name','discription', 'id', 'picture', 'quantity', 'price', 'size']
+# class DetailSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Item
+#         fields = ['discription', 'id', 'picture', 'quantity', 'size', 'gender']
 
 
 class UserCreateSerializer(serializers.ModelSerializer):

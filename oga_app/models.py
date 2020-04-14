@@ -4,21 +4,28 @@ from django.contrib.auth.models import User
 
 
 class Item(models.Model):
-    name = models.CharField(max_length=120)
-    discription = models.TextField(max_length=350)
-    picture = models.ImageField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    quantity = models.IntegerField()
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE,  related_name="user")
-    
-    CHOICES = (
+    SIZES = (
         ('L', 'large'),
         ('XL', 'x-large'),
         ('S', 'small'),
         ('M', 'medium'),
     )
-    size = models.CharField(max_length=2, choices=CHOICES)
+
+    GENDERS = (
+        ('M', 'male'),
+        ('F', 'female'),
+    )
+
+    name = models.CharField(max_length=120)
+    discription = models.TextField()
+    picture = models.ImageField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    quantity = models.IntegerField()
+    size = models.CharField(max_length=2, choices=SIZES)
+    gender = models.CharField(max_length=1, choices=GENDERS)
+
+    owner = models.ForeignKey(
+        User, on_delete=models.CASCADE,  related_name="user")
 
     def __str__(self):
         return self.name
