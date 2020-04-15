@@ -17,7 +17,7 @@ class Item(models.Model):
     )
 
     name = models.CharField(max_length=120)
-    discription = models.TextField()
+    discription = models.TextField() #description
     picture = models.ImageField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.IntegerField()

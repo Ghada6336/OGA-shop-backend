@@ -25,17 +25,12 @@ from oga_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-
+    # URL pattern should be "clothes/" instead of "clotheslist/"
     path('clotheslist/', views.SockListView.as_view(), name='clotheslist'),
-
-
     path('login/', TokenObtainPairView.as_view(), name="login"),
     path('token/refresh/', TokenRefreshView.as_view(), name="token-refresh"),
     path('register/', views.UserCreateAPIView.as_view(), name="register"),
 ]
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL,
-                          document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

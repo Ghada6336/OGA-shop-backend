@@ -6,14 +6,22 @@ from .models import Item
 class ItemListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ['id', 'name',  'picture', 'discription',
-                  'price', 'quantity', 'owner', 'gender']
+        fields = [
+            'id',
+            'name',
+            'picture',
+            'discription',
+            'price',
+            'quantity',
+            'owner',
+            'gender'
+        ]
 
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
-        password = serializers.CharField(write_only=True)
+        password = serializers.CharField(write_only=True) # This should be defined outside class Meta, not inside
         model = User
         fields = ['username', 'password']
 
