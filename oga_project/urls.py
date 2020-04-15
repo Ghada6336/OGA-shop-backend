@@ -23,9 +23,9 @@ from django.contrib import admin
 from django.urls import path
 from oga_app import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-
 
     path('clotheslist/', views.SockListView.as_view(), name='clotheslist'),
     # path('clothesdetails/<int:object_id>/',
