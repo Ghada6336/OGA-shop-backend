@@ -10,17 +10,19 @@ class ItemListSerializer(serializers.ModelSerializer):
                   'price', 'quantity', 'owner', 'gender']
 
 
-
 class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
         password = serializers.CharField(write_only=True)
         model = User
-        fields = ['username', 'password']
+        fields = ['username', 'password', 'first_name', 'last_name']
 
     def create(self, validated_data):
         username = validated_data['username']
         password = validated_data['password']
-        new_user = User(username=username)
+        first_name = validated_data['first_name']
+        last_name = validated_data['last_name']
+        new_user = User(username=username,
+                        first_name=first_name, last_name=last_name)
         new_user.set_password(password)
         new_user.save()
         return validated_data
