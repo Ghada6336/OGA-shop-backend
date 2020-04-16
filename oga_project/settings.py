@@ -39,14 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-
-    'corsheaders',
     'rest_framework',
     'oga_app',
 ]
-JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=6),
-}
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=30),
+ }
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',

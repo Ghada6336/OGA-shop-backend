@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-# Create your models here.
+
 from django.db.models.signals import post_save, pre_delete, pre_save
 from django.dispatch import receiver
 
@@ -34,20 +34,22 @@ class Item(models.Model):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_picture = models.ImageField()
-    shopname = models.CharField(max_length=120)
+	GENDER = (
+		("F", "Female"),
+		("M", "Male")
+	)
+	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+	phone = models.PositiveIntegerField(null=True)
+	gender = models.CharField(choices=GENDER, max_length=2, null=True)
+	age = models.PositiveIntegerField(null=True)
+	image = models.ImageField(null=True)
 
-    def __str__(self):
-        return str(self.user)
 
+	def __str__(self):
+		return self.user.username
 
 @receiver(post_save, sender=User)
-def create_user(sender, instance, created, **kwargs):
+def create_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance)
+        Profile.objects.create(user= instance)
 
-
-@receiver(post_save, sender=User)
-def save_profile(sender, instance, **kwargs):
-    instance.profile.save()

@@ -28,7 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('clotheslist/', views.SockListView.as_view(), name='clotheslist'),
-
+    path('profile/',views.ProfileUpdateView.as_view(),name='profile'),
 
     path('login/', TokenObtainPairView.as_view(), name="login"),
     path('token/refresh/', TokenRefreshView.as_view(), name="token-refresh"),

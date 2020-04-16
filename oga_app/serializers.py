@@ -1,9 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Item
-
-from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from .models import Item ,Profile
 
 class ItemListSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,19 +8,6 @@ class ItemListSerializer(serializers.ModelSerializer):
         fields = ['id', 'name',  'picture', 'discription',
                   'price', 'quantity', 'owner', 'gender']
 
-
-
-class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
-
-        # Add custom claims
-        token['username'] = user.username,
-        token['email'] = user.email,
-
-        # ...
-        return token
 
     
 class UserCreateSerializer(serializers.ModelSerializer):
@@ -42,3 +26,28 @@ class UserCreateSerializer(serializers.ModelSerializer):
         new_user.set_password(password)
         new_user.save()
         return validated_data
+
+class UserSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = User
+		fields = ["username", "first_name", "last_name", "email"]
+		read_only_fields = ['username']
+
+
+class UpdateProfileSerializer(serializers.ModelSerializer):
+	user = UserSerializer()
+
+	class Meta:
+		model = Profile
+		fields = ["user","phone","gender","age","image"]
+
+	def update(self, instance, validated_data):
+	
+		user_field = validated_data.pop('user', None)
+		temp_user_serializer = UserSerializer()
+		super().update(instance, validated_data)
+		super(UserSerializer, temp_user_serializer).update(instance.user, user_field)
+		return instance
+
+
