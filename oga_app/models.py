@@ -51,3 +51,20 @@ def create_user(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+
+class Order(models.Model):
+    user_order = models.ForeignKey(
+        User, on_delete=models.CASCADE,  related_name="user_order")
+    is_order = models.BooleanField(null=True)
+
+    def str(self):
+        return self.user_order.username
+
+
+class OrderItem(models.Model):
+    order_owner = models.ForeignKey(
+        "Order", on_delete=models.CASCADE,  related_name="order_owner")
+    order_item = models.ForeignKey(
+        Item, on_delete=models.CASCADE,  related_name="order_item")
+    quantity_num = models.PositiveIntegerField(null=True)
