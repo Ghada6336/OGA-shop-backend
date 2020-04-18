@@ -61,7 +61,6 @@ class Order(models.Model):
     user_order = models.ForeignKey(
         User, on_delete=models.CASCADE,  related_name="user_order")
     is_order = models.BooleanField(null=True)
-    items = models.ManyToManyField(Item)
 
     def __str__(self):
         return self.user_order.username
