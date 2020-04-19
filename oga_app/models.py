@@ -33,7 +33,6 @@ class Item(models.Model):
         return self.name
 
 
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField()
