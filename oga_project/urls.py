@@ -29,7 +29,9 @@ urlpatterns = [
 
     path('clotheslist/', views.SockListView.as_view(), name='clotheslist'),
     path('profile/',views.ProfileUpdateView.as_view(),name='profile'),
-
+    
+    path('order/',views.OrderItems.as_view(),name='order'),
+    
     path('login/', TokenObtainPairView.as_view(), name="login"),
     path('token/refresh/', TokenRefreshView.as_view(), name="token-refresh"),
     path('register/', views.UserCreateAPIView.as_view(), name="register"),
