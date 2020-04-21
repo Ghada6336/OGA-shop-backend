@@ -55,9 +55,6 @@ def create_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
 
 
-
-
-
 class Order(models.Model):
 	owner = models.ForeignKey(User, on_delete=models.CASCADE,default=1, related_name='orders')
 
