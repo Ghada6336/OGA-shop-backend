@@ -54,21 +54,21 @@ def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
 
-# check
-
 
 class Order(models.Model):
-    user_order = models.ForeignKey(
-        User, on_delete=models.CASCADE,  related_name="user_order")
-    is_order = models.BooleanField(null=True)
+	owner = models.ForeignKey(User, on_delete=models.CASCADE,default=1, related_name='orders')
 
-    def __str__(self):
-        return self.user_order.username
+	def __str__ (self):
+		return ("Order: " + self.owner.username)
 
+class Basket(models.Model):
+	item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='items')
+	quantity = models.PositiveIntegerField()
+	order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='baskets')
 
-class OrderItem(models.Model):
-    order_owner = models.ForeignKey(
-        "Order", on_delete=models.CASCADE,  related_name="order_owner")
-    order_item = models.ForeignKey(
-        Item, on_delete=models.CASCADE,  related_name="order_item")
-    quantity_num = models.PositiveIntegerField(null=True)
+@receiver(post_save, sender=Basket)
+def reduce_inventory(instance, created, **kwargs):
+	if created:
+		item = Item.objects.get(id=instance.item.id)
+		item.quantity -= instance.quantity
+		item.save()
